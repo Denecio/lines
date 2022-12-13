@@ -25,12 +25,12 @@ function preload() {
 function setup() {
   noCursor();
   createCanvas(window.innerWidth, window.innerHeight);
-  cols = floor(width / scl);
-  rows = floor(height / scl);
   textSize(fontsize);
   let bbox = myFont.textBounds(txt, 0, fontsize, fontsize);
   len=bbox.w+20;
   alt=bbox.h+10;
+  cols = ceil(len / scl);
+  rows = ceil(alt / scl);
   pg = createGraphics(len, alt);
   pg.background(125);
   pg.textSize(fontsize);
@@ -59,8 +59,8 @@ function draw(){
       let v = p5.Vector.fromAngle(angle, 1);
       field[index] = v;
       xoff += inc;
-      stroke(255, 50);
-      /*push();
+      /*stroke(255, 50);
+      push();
       translate(x * scl, y * scl);
       rotate(v.heading());
       strokeWeight(1);
@@ -80,7 +80,7 @@ function draw(){
   fill(255,0,0);
   textSize(10);
   text(a, 10, 10);
-  text(len, 10, 20);*/
+  text(linhas.length, 10, 20);*/
 
   for(let i = linhas.length-1; i>=0; i--){
     linhas[i].desenha(field);
@@ -105,9 +105,9 @@ function criarlinhas(){
   }
 }
 
-function mousePressed(){
+/*function mousePressed(){
   noLoop();
-}
+}*/
 
 class Linha {
 
